@@ -19,7 +19,7 @@ def receive_sms():
 
     print "From: " + number + " | Message: " + message_body
 
-    json_file = open("queue.json", "r")
+    json_file = open(path, "r")
     data = json.load(json_file)
     json_length = len(data['players'][0])
     json_file.close()
