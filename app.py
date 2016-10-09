@@ -5,7 +5,7 @@ import json
 app = Flask(__name__)
 
 relationship_dict = {}
-
+path = "Assets/Resources/queue.json"
 
 @app.route("/")
 def index():
@@ -21,7 +21,7 @@ def receive_sms():
 
     json_file = open("queue.json", "r")
     data = json.load(json_file)
-    json_length = len(data['players'])
+    json_length = len(data['players'][0])
     json_file.close()
 
     print json_length
@@ -33,25 +33,25 @@ def queue(number, message):
     if len(relationship_dict.keys()) < 8:
         relationship_dict[number] = "x" + str(len(relationship_dict.keys()))
 
-        json_file = open("queue.json", "r")
+        json_file = open(path, "r")
         data = json.load(json_file)
-        data['players'].update({relationship_dict[number]: str(message).lower()})
+        data['players'][0].update({relationship_dict[number]: str(message).lower()})
         json_file.close()
 
-        json_file = open("queue.json", "w+")
+        json_file = open(path, "w+")
         json.dump(data, json_file)
         json_file.close()
 
 
 def update(number, message):
-    json_file = open("queue.json", "r")
+    json_file = open(path, "r")
     data = json.load(json_file)
-    print "Is none? " + str(data['players'].get(number))
-    if data['players'].get(relationship_dict[number]) is not None:
-        data['players'].update({relationship_dict[number]: str(message).lower()})
+    print "Is none? " + str(data['players'][0].get(number))
+    if data['players'][0].get(relationship_dict[number]) is not None:
+        data['players'][0].update({relationship_dict[number]: str(message).lower()})
     json_file.close()
 
-    json_file = open("queue.json", "w+")
+    json_file = open(path, "w+")
     json.dump(data, json_file)
     json_file.close()
 
