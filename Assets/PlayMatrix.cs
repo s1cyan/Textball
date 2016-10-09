@@ -2,42 +2,67 @@
 using System.Collections.Generic;
 
 [System.Serializable]
-public class Square
+public class Cell
 {
-    public bool occupied = false;
+    public Vector3 pos;
+    public bool isOccupied = false;
 }
-
-[System.Serializable]
-public class Row
-{
-    public List<Square> row = new List<Square>();
-}
-
 
 public class PlayMatrix : MonoBehaviour {
-    public int length = 8;
-    public int width = 4;
+    public int length = 20;
+    public int width = 6;
 
-    
-    private List<Row> playMatrix = new List<Row>();
+    public Transform player;
+
+    private int x = 2;
+    private int x2 = 18;
+    private int z= 1;
+    private Cell[,] playMatrix;
+
 
     void OnEnable()
     {
-        for(int i = 0; i < width; i++)
+        playMatrix = new Cell[length, width];
+        SetUpMatrix();
+        PlacePlayers();
+
+    }
+
+    private void SetUpMatrix()
+    {
+        for(int i= 0; i < length; i ++)
         {
-            Row row = new Row();
-            for (int j = 0; j < length; j++)
+            for (int j = 0; j< width; j++)
             {
-                var occupied = new Square();
-                row.row.Add(occupied);
+                playMatrix[i, j] = new Cell();
             }
-            playMatrix.Add(row);
         }
     }
-    
+
+    private void PlacePlayers()
+    {
+        for (int i = 0; i < 4; i++)
+        {
+            var p = Instantiate(player);
+            p.transform.position = new Vector3(x, .5f, z);
+            playMatrix[x,z].isOccupied = true;
+            var p2 = Instantiate(player);
+            p2.transform.position = new Vector3(x2, .5f, z);
+            playMatrix[x2, z].isOccupied = true;
+            z += 1;
+        }
+       for(int i = 0; i < length; i++)
+        {
+           for(int j = 0; j < width; j++)
+            {
+                Debug.LogFormat (" {0}, {1}, {2}", i,j,playMatrix[i, j].isOccupied);
+            }
+        }
+    }
+       
+
 	// Use this for initialization
 	void Start () {
-        
 
 	
 	}
