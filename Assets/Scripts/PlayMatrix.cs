@@ -19,6 +19,7 @@ public class PlayMatrix : MonoBehaviour {
     private int z= 1;
     private Cell[,] playMatrix;
 
+    public Cell[,] PlayField { get { return playMatrix; } }
 
     void OnEnable()
     {
