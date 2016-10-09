@@ -18,10 +18,12 @@ def receive_sms():
     print "From: " + number + " | Message: " + message_body
 
     json_file = open("queue.json", "r")
-    json_length = json.load(json_file)['players']
+    data = json.load(json_file)
+    json_length = len(data['players'])
     json_file.close()
 
-    if json_length < 9:
+    print json_length
+    if json_length < 8:
         queue(number, message_body)
     else:
         update(number, message_body)
@@ -30,7 +32,7 @@ def receive_sms():
 def queue(number, message):
     json_file = open("queue.json", "r")
     data = json.load(json_file)
-    data['players'][number] = message
+    data['players'].update({number : message})
     json_file.close()
 
     json_file = open("queue.json", "w+")
@@ -41,6 +43,7 @@ def queue(number, message):
 def update(number, message):
     json_file = open("queue.json", "r")
     data = json.load(json_file)
+    print "Is none? " + str(data['players'].get(number))
     if data['players'].get(number) is not None:
         data['players'].update({number: message})
     json_file.close()
@@ -48,24 +51,6 @@ def update(number, message):
     json_file = open("queue.json", "w+")
     json.dump(data, json_file)
     json_file.close()
-
-
-def queue_or_update(number, message):
-    # Get the json file and load the data
-    json_file = open("queue.json", "r")
-    data = json.load(json_file)
-    json_file.close()
-
-    written_file = open("queue.json", "r+")
-
-    if len(data['players']) < 9 and number not in data['players'].keys():
-        print "Add"
-        data['players'][number] = message
-    elif len(data['players']) < 9 and number in data['players'].keys():
-        print "Update"
-        data['players'].update({number: message})
-        json.dump(data, written_file)
-        written_file.close()
 
 
 if __name__ == '__main__':
