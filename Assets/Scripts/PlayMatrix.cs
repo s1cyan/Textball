@@ -51,13 +51,13 @@ public class PlayMatrix : MonoBehaviour {
             playMatrix[x2, z].isOccupied = true;
             z += 1;
         }
-       for(int i = 0; i < length; i++)
-        {
-           for(int j = 0; j < width; j++)
-            {
-                Debug.LogFormat (" {0}, {1}, {2}", i,j,playMatrix[i, j].isOccupied);
-            }
-        }
+       //for(int i = 0; i < length; i++)
+       // {
+       //    for(int j = 0; j < width; j++)
+       //     {
+       //         Debug.LogFormat (" {0}, {1}, {2}", i,j,playMatrix[i, j].isOccupied);
+       //     }
+       // }
     }
        
 
