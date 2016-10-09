@@ -55,7 +55,15 @@ public class Movement : MonoBehaviour
         if (playMatrix.PlayField[(int)goalLocation.x, (int)goalLocation.z].isOccupied == false) {
 
             playMatrix.PlayField[(int)currentLocation.x, (int)currentLocation.z].isOccupied = false;
-            playMatrix.PlayField[(int)goalLocation.x, (int)goalLocation.z].isOccupied = true;
+            try
+            {
+                playMatrix.PlayField[(int)goalLocation.x, (int)goalLocation.z].isOccupied = true;
+
+            }
+            catch(ArgumentOutOfRangeException)
+            {
+                
+            }
             players[i].transform.position = Vector3.MoveTowards(currentLocation, goalLocation, 1.0f);
 
         }
@@ -75,16 +83,16 @@ public class Movement : MonoBehaviour
                 x -= 1f;
                 break;
             case ("s"):
-                z -= 1;
+                z -= 1f;
                 break;
             case ("d"):
-                x += 1;
+                x += 1f;
                 break;
             case ("stop"):
                 //nothing
                 break;
         }
-        Vector3 deltaVect = new Vector3(x, .5f, z);
+        Vector3 deltaVect = new Vector3(x, 0f, z);
         return deltaVect;
         
     }
