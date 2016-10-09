@@ -30,7 +30,7 @@ def receive_sms():
 
 
 def queue(number, message):
-    if len(relationship_dict.keys()) < 8:
+    if len(relationship_dict.keys()) < 8 and relationship_dict.get(number) is None:
         print "queue"
         relationship_dict[number] = "x" + str(len(relationship_dict.keys()))
 
@@ -59,4 +59,5 @@ def update(number, message):
 
 
 if __name__ == '__main__':
+    relationship_dict.clear()
     app.run(port=5000)
