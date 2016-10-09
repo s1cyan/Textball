@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+<<<<<<< HEAD
+guid: 4028899b863db0f4c83223e7fbc6e39e
+folderAsset: yes
+timeCreated: 1475991442
+licenseType: Pro
+=======
+guid: e044870e89f2b504e9ed6bd08acc4f3f
+folderAsset: yes
+timeCreated: 1475983916
+licenseType: Free
+>>>>>>> Changed location of queue.json and updated the path in app.py
+DefaultImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

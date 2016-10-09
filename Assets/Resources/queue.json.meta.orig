@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+<<<<<<< HEAD
+guid: 6aac0bffe7b47c14cbf449f4c365b27e
+timeCreated: 1475991464
+licenseType: Pro
+=======
+guid: 2c88e96d08c98eb48a6cca998bb082e7
+timeCreated: 1475984093
+licenseType: Free
+>>>>>>> wrapper reads json - converts to players. added json file update coroutine.
+TextScriptImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

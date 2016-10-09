@@ -19,7 +19,7 @@ def receive_sms():
 
     print "From: " + number + " | Message: " + message_body
 
-    json_file = open(path, "r")
+    json_file = open("Assets/Resources/queue.json", "r")
     data = json.load(json_file)
     json_length = len(data['players'][0])
     json_file.close()
@@ -30,8 +30,8 @@ def receive_sms():
 
 
 def queue(number, message):
+<<<<<<< HEAD
     if len(relationship_dict.keys()) < 8:
-        print "queue"
         relationship_dict[number] = "x" + str(len(relationship_dict.keys()))
 
         json_file = open(path, "r")
@@ -45,15 +45,32 @@ def queue(number, message):
 
 
 def update(number, message):
-    print "update"
     json_file = open(path, "r")
+=======
+    json_file = open("Assets/Resources/queue.json", "r")
+    data = json.load(json_file)
+    data['players'].update({number : message})
+    json_file.close()
+
+    json_file = open("Assets/Resources/queue.json", "w+")
+    json.dump(data, json_file)
+    json_file.close()
+
+
+def update(number, message):
+    json_file = open("Assets/Resources/queue.json", "r")
+>>>>>>> Changed location of queue.json and updated the path in app.py
     data = json.load(json_file)
     print "Is none? " + str(data['players'][0].get(number))
     if data['players'][0].get(relationship_dict[number]) is not None:
         data['players'][0].update({relationship_dict[number]: str(message).lower()})
     json_file.close()
 
+<<<<<<< HEAD
     json_file = open(path, "w+")
+=======
+    json_file = open("Assets/Resources/queue.json", "w+")
+>>>>>>> Changed location of queue.json and updated the path in app.py
     json.dump(data, json_file)
     json_file.close()
 

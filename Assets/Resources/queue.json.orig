@@ -1,0 +1,5 @@
+<<<<<<< HEAD
+{"players": [{}]}
+=======
+{"players": [{"x0": "U", "x1": "G"}]}
+>>>>>>> wrapper reads json - converts to players. added json file update coroutine.
